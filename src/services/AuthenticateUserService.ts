@@ -25,7 +25,7 @@ export default class AuthenticateUserService {
       throw new Error('Incorrect email/password combination.');
     }
 
-    const passwordMatched = await compare(password, user.password);
+    const passwordMatched = await compare(password, user.password as string);
 
     if (!passwordMatched) {
       throw new Error('Incorrect email/password combination.');
