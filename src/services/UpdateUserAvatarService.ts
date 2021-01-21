@@ -24,14 +24,16 @@ export default class UpdateUserAvatarService {
     }
 
     if (user.avatar) {
+      //apaga do diretorio se exsistir user_id
       const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar);
+      //verifica se existe
       const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath);
 
       if (userAvatarFileExists) {
         await fs.promises.unlink(userAvatarFilePath);
       }
     }
-
+    
     user.avatar = avatarFilename;
 
     await usersRepository.save(user);
