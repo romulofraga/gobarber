@@ -21,15 +21,18 @@ export default function ensureAuthenticated(
     throw new AppError('JWT token is missing', 401);
   }
 
+  // o tokem vem Brearer dfljfeiof, isso divide no espaço e recupera o token que vem no header
   const [, token] = authHeader.split(' ');
 
   try {
+    // retorna {iat, exp e sub (id do usuário)}
     const decoded = verify(token, authConfig.jwt.secret);
 
-    console.log(decoded);
+    // console.log(decoded);
 
     const { sub } = decoded as TokenPayload;
 
+    //adiciona ao Request, o id do user, que é repassado para todas as rotas que utilizam esse middleware
     request.user = {
       id: sub,
     };
