@@ -4,7 +4,7 @@ import authConfig from '@config/auth';
 
 import AppError from '@shared/errors/AppError';
 
-interface TokenPayload {
+interface ITokenPayload {
   iat: number;
   exp: number;
   sub: string;
@@ -30,9 +30,9 @@ export default function ensureAuthenticated(
 
     // console.log(decoded);
 
-    const { sub } = decoded as TokenPayload;
+    const { sub } = decoded as ITokenPayload;
 
-    //adiciona ao Request, o id do user, que é repassado para todas as rotas que utilizam esse middleware
+    // adiciona ao Request, o id do user, que é repassado para todas as rotas que utilizam esse middleware
     request.user = {
       id: sub,
     };
