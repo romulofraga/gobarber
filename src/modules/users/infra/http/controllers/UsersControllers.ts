@@ -27,6 +27,7 @@ export default class UsersController {
     response: Response,
   ): Promise<Response> {
     const updateUserAvatar = container.resolve(UpdateUserAvatarService);
+
     const user = await updateUserAvatar.execute({
       user_id: request.user.id,
       avatarFilename: request.file.filename,
