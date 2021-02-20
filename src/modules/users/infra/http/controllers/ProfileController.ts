@@ -12,6 +12,8 @@ export default class ProfileController {
 
     const user = await shoProfile.execute({ user_id });
 
+    delete user.password;
+
     return response.json(user);
   }
 
@@ -28,6 +30,8 @@ export default class ProfileController {
       password,
       old_password,
     });
+
+    delete user.password;
 
     return response.json(user);
   }

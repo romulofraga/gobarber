@@ -17,7 +17,7 @@ export default class CreateUsersService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('BCryptHashProvider')
+    @inject('HashProvider')
     private hashProvider: IHashProvider,
   ) {}
 
