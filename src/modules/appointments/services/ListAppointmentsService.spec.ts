@@ -2,15 +2,21 @@ import 'reflect-metadata';
 import CreateApointmentService from '@modules/appointments/services/CreateAppointmentService';
 import ListAppointmentsServce from '@modules/appointments/services/ListAppointmentsServce';
 import FakeApointmentRepository from '@modules/appointments/repositories/fakes/FakeAppointmentRepository';
+import FakeNotificationsRepository from '@modules/notifications/repositories/fakes/FakeNotificationRepository';
 
 let fakeAppointmentRepository: FakeApointmentRepository;
 let createAppointment: CreateApointmentService;
 let listAppointments: ListAppointmentsServce;
+let fakeNotificationsRepository: FakeNotificationsRepository;
 
 describe('ListsAppointments', () => {
   beforeEach(() => {
     fakeAppointmentRepository = new FakeApointmentRepository();
-    createAppointment = new CreateApointmentService(fakeAppointmentRepository);
+    fakeNotificationsRepository = new FakeNotificationsRepository();
+    createAppointment = new CreateApointmentService(
+      fakeAppointmentRepository,
+      fakeNotificationsRepository,
+    );
     listAppointments = new ListAppointmentsServce(fakeAppointmentRepository);
   });
 
