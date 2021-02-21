@@ -52,13 +52,9 @@ export default class UpdateProfileService {
     }
 
     if (password && old_password) {
-      if (!user.password) {
-        throw new AppError('password Não encontrado');
-      }
-
       const checkOldPassword = await this.hashProvider.compareHash(
         old_password,
-        user.password,
+        user.password as string,
       );
 
       if (!checkOldPassword) {
