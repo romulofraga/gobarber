@@ -21,14 +21,14 @@ usersRouter.post(
       password: Joi.string().required(),
     },
   }),
-  usersController.createUser,
+  usersController.create,
 );
 
 usersRouter.patch(
   '/avatar',
   ensureAuthenticated,
   upload.single('avatar'),
-  usersController.updateAvatar,
+  usersController.update,
 );
 
 export default usersRouter;
