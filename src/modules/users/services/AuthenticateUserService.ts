@@ -48,9 +48,12 @@ export default class AuthenticateUserService {
     // assina e gera um token onde o primeiro parametro são configs uteis mas não sensiveis
     // a chave secreta unica para gerar nosso token
     // subject -> sempre como o id  e a data de inspiração
-    const token = sign({}, authConfig.jwt.secret, {
+
+    const { secret, expiresIn } = authConfig.jwt;
+
+    const token = sign({}, secret, {
       subject: user.id,
-      expiresIn: authConfig.jwt.expiresIn,
+      expiresIn,
     });
 
     return {
