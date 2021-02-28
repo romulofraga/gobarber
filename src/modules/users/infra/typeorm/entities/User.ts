@@ -42,7 +42,7 @@ class User {
       case 'disk':
         return `${process.env.APP_API_URL}/files${this.avatar}`;
       case 's3':
-        return `http://url-do-servidor-da-amazon==${uploadConfig.config.aws.bucket}.s3.amazonaws.com/${this.avatar}`;
+        return `http://url-do-servidor-da-amazon==http://${uploadConfig.config.aws.bucket}.s3.amazonaws.com/${this.avatar}`;
       default:
         return null;
     }

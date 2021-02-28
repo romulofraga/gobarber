@@ -1,20 +1,28 @@
 import 'reflect-metadata';
 import AppError from '@shared/errors/AppError';
-import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersrepository';
-import BCryptHashProvider from '@modules/users/providers/HashProvider/implementations/BCryptHashProvider';
-import CreateUsersService from './CreateUsersService';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import FakeUsersRepository from '../repositories/fakes/FakeUsersrepository';
+import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
+import CreateUserService from './CreateUsersService';
 
 let fakeUsersRepository: FakeUsersRepository;
-let hashProvider: BCryptHashProvider;
-let createUser: CreateUsersService;
+let fakeHashProvider: FakeHashProvider;
+let fakeCacheProvider: FakeCacheProvider;
+let createUser: CreateUserService;
 
-describe('CreateUsers', () => {
+describe('CreateUser', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
-    hashProvider = new BCryptHashProvider();
+    fakeHashProvider = new FakeHashProvider();
+    fakeCacheProvider = new FakeCacheProvider();
 
-    createUser = new CreateUsersService(fakeUsersRepository, hashProvider);
+    createUser = new CreateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+      fakeCacheProvider,
+    );
   });
+
   it('should be able to create a new user', async () => {
     const user = await createUser.execute({
       name: 'John Doe',
