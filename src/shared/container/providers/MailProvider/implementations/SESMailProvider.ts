@@ -3,7 +3,7 @@ import aws from 'aws-sdk';
 
 import { inject, injectable } from 'tsyringe';
 
-import mailConfig from 'config/mail';
+import mailConfig from '@config/mail';
 
 import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
 import IMailProvider from '../models/IMailProvider';
@@ -43,7 +43,5 @@ export default class SESMailProvider implements IMailProvider {
       subject,
       html: await this.mailTemplateProvider.parse(templateData),
     });
-
-    console.log('funcionou');
   }
 }
