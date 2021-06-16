@@ -76,7 +76,7 @@ Technologies that I used to develop this api
 **Clone the project and access the folder**
 
 ```bash
-$ git clone https://github.com/romulofraga/gostack-gobarbert && cd gostack-gobarber
+$ git clone https://github.com/romulofraga/gobarber && cd gostack-gobarber
 ```
 
 **Follow the steps below**
